@@ -1,7 +1,10 @@
 package io.kielbi.sda.sda.jpa_17.repository;
 
+
 import io.kielbi.sda.sda.jpa_17.entity.Position;
+import io.kielbi.sda.sda.jpa_17.entity.Project;
 import org.springframework.stereotype.Repository;
+
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -9,19 +12,20 @@ import javax.persistence.criteria.Path;
 import javax.persistence.criteria.Root;
 import java.util.List;
 
+
 @Repository
 
-public class PositionRepository extends AbstractCustomCrudRepository<Position, Long> {
+public class ProjectRepository extends AbstractCustomCrudRepository<Project, Long> {
 
 
-    public PositionRepository(EntityManager em) {
-        super(em, Position.class);
+    public ProjectRepository(EntityManager em) {
+        super(em, Project.class);
     }
 
-    public List<Position> findByName(String name) {
+    public List<Project> findByName(String name) {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
-        CriteriaQuery<Position> query = criteriaBuilder.createQuery(Position.class);
-        Root<Position> from = query.from(Position.class);
+        CriteriaQuery<Project> query = criteriaBuilder.createQuery(Project.class);
+        Root<Project> from = query.from(Project.class);
 
         return em.createQuery(query.select(from)
                 .where(criteriaBuilder.like(from.get("name"), "%" + name + "%")))
@@ -31,8 +35,9 @@ public class PositionRepository extends AbstractCustomCrudRepository<Position, L
     public List<String> findAllNames() {
         CriteriaBuilder criteriaBuilder = em.getCriteriaBuilder();
         CriteriaQuery<String> query = criteriaBuilder.createQuery(String.class);
-        Path<String> name = query.from(Position.class).get("name");
+        Path<String> name = query.from(Project.class).get("name");
 
         return em.createQuery(query.select(name)).getResultList();
     }
 }
+
