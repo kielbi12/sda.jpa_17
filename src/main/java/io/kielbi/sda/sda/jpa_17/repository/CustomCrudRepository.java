@@ -1,7 +1,10 @@
 package io.kielbi.sda.sda.jpa_17.repository;
 
+import org.springframework.data.repository.NoRepositoryBean;
+
 import java.util.List;
 
+//@NoRepositoryBean
 public interface CustomCrudRepository<T, ID> {
 
     List<T> findAll();

@@ -16,9 +16,6 @@ public class Position extends AbstractEntity<Long> {
     @Column(unique = true, nullable = false, length = 64)
     private String name;
 
-
-
-
     public String getName() {
         return name;
     }
